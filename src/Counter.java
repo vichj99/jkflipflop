@@ -24,7 +24,7 @@ public class Counter{
 	//--------------------------------------
 	
 	public static boolean[] CLOCK = {false, false}; //This is the CLOCK that controls the pulse of the counter, you must invert the CLOCK continuously to provide a pulse.
-	public static boolean S = false; //S is a manual input, it does not serve much of a purpose.
+	public static boolean S = false; //S is a manual input, it otherwise does not serve much of a purpose.
 	public static boolean R = false; //R is the same as S.
 	public static boolean FIRST = true; //Denotes the Product of the 1st NAND Gate
 	public static boolean SECOND = true; //Denotes the Product of the 2nd NAND GATE

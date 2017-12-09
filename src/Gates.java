@@ -1,58 +1,71 @@
 
 public class Gates {
-	final static boolean ONE = true;
-	final static boolean ZERO = false;
+	final private static boolean ONE = true;
+	final private static boolean ZERO = false;
 	
 	public static boolean NOT(Boolean a) {
 		return !a;
 		
-	}
+	}//End NOT
 	
 	public static boolean AND(Boolean a, Boolean b) {
 		if(a && b) {
-			return true;
+			return ONE;
+		
 		}
-		return false;
-	}
+		return ZERO;
+	
+	}//End AND
 	
 	public static boolean NAND(Boolean a, Boolean b) {
 		if(NOT(AND(a, b))) {
-			return true;
+			return ONE;
+		
 		}
-		return false;
-	}
+		return ZERO;
+	
+	}//End NAND
 	
 	public static boolean OR(Boolean a, Boolean b) {
 		if(a || b) {
-			return true;
+			return ONE;
+		
 		}
-		return false;
-	}
+		return ZERO;
+	
+	}//End OR
 	
 	public static boolean NOR(Boolean a, Boolean b) {
 		if(NOT(OR(a, b))) {
-			return true;
+			return ONE;
+		
 		}
-		return false;
-	}
+		return ZERO;
+		
+	}//End NOR
 	
 	public static boolean XOR(Boolean a, Boolean b) {
 		if(OR(AND(NOT(a), b), AND(a, NOT(b)))) {
-			return true;
+			return ONE;
+		
 		}
-		return false;
-	}
+		return ZERO;
+	
+	}//END XOR
 	
 	public static boolean XNOR(Boolean a, Boolean b) {
 		if(NOT(XOR(a, b))) {
-			return true;
+			return ONE;
+		
 		}
-		return false;
-	}
+		return ZERO;
+	
+	}//End XNOR
 	
 	public static boolean ONLY(Boolean a, Boolean b) {
-		return false;
-	}
+		return ZERO;
+	
+	}//End ONLY
 	
 	
-}
+}//End Class
