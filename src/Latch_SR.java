@@ -40,6 +40,7 @@ public class Latch_SR {
 		
 	}//End update
 	
+	//Get Methods
 	public boolean getR() {
 		return R;
 		
@@ -65,6 +66,7 @@ public class Latch_SR {
 		
 	}//End getTime
 	
+	//Set Methods
 	public void setR(boolean newR) {
 		R = newR;
 	

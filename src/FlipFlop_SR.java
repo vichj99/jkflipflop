@@ -9,8 +9,11 @@ public class FlipFlop_SR extends Latch_SR{
 	 * Because R and S were manual inputs from the 
 	 * Latch_SR class, they have become FIRST and 
 	 * SECOND in this class. The new manual inputs
-	 * have become R_FFSR and S_FFSR. See the diagram below 
-	 * for extra details.
+	 * have become R_FFSR and S_FFSR. 
+	 * 
+	 * See the diagram below for extra details.
+	 * 
+	 * See Latch_SR class for diagram derivation.
 	 * 
 	 */
 	
@@ -43,24 +46,23 @@ public class FlipFlop_SR extends Latch_SR{
 	private boolean Qc_FFSR;
 	
 	public FlipFlop_SR() {
+		super(); //Invokes Latch_SR constructor
+		
 		CLOCK = new boolean[2]; //This is the CLOCK that controls the pulse of the counter, you must invert the CLOCK continuously to provide a pulse.
 			CLOCK[0] = false;
 			CLOCK[1] = false;
 			
 		R_FFSR = false;//Denotes a manual input R_FFSR
+		
 		S_FFSR = false;//Denotes a manual input S_FFSR
 		
-		FIRST = true; //Denotes the Product of the 1st NAND Gate
-			setR(FIRST);
+		setFIRST(true); //Denotes the Product of the 1st NAND Gate
 			
-		SECOND = true; //Denotes the Product of the 2nd NAND GATE
-			setS(SECOND);
-			
-		Q_FFSR = true; //Denotes the Product of the 3rd NAND Gate
-			setQ(Q_FFSR);
-			
-		Qc_FFSR = false; //Denotes the Product of the 4th NAND Gate
-			setQc(Qc_FFSR);
+		setSECOND(true); //Denotes the Product of the 2nd NAND GATE
+
+		setQ_FFSR(true); //Denotes the Product of the 3rd NAND Gate
+		
+		setQc_FFSR(false); //Denotes the Product of the 4th NAND Gate
 	
 	}//End constructor
 	
@@ -68,14 +70,10 @@ public class FlipFlop_SR extends Latch_SR{
 	public void update(int timeElapsed) {
 		for(int i = 0; i < timeElapsed; i++) {
 			invertCLOCK();
-			FIRST = Gates.NAND(R_FFSR, CLOCK[0]);
-				setR(FIRST);
-			SECOND = Gates.NAND(CLOCK[1], S_FFSR);
-				setS(SECOND);
-			Q_FFSR = Gates.NAND(FIRST, Qc_FFSR);
-				setQ(Q_FFSR);
-			Qc_FFSR = Gates.NAND(Q_FFSR, SECOND);
-				setQc(Qc_FFSR);
+			setFIRST(Gates.NAND(R_FFSR, CLOCK[0]));
+			setSECOND(Gates.NAND(CLOCK[1], S_FFSR));
+			setQ_FFSR(Gates.NAND(FIRST, Qc_FFSR));
+			setQc_FFSR(Gates.NAND(Q_FFSR, SECOND));
 			setTime(getTime()+1);
 		}
 	
@@ -151,12 +149,14 @@ public class FlipFlop_SR extends Latch_SR{
 	}//End setSECOND
 	
 	public void setQ_FFSR(boolean newQ_FFSR) {
-		setQ(newQ_FFSR);
+		Q_FFSR = newQ_FFSR;
+			setQ(newQ_FFSR);
 	
 	}//End setQ_FFSR
 	
 	public void setQc_FFSR(boolean newQc_FFSR) {
-		setQc(newQc_FFSR);
+		Qc_FFSR = newQc_FFSR;
+			setQc(newQc_FFSR);
 		
 	}//End setQc_FFSR
 	

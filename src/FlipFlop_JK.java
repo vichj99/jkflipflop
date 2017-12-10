@@ -3,8 +3,8 @@ public class FlipFlop_JK extends FlipFlop_SR{
 	
 	/*
 	 * One important thing to know about this diagram
-	 * is that Q1 is the same as the inherited Q
-	 * from the Latch_SR class and Qc1 is the same as
+	 * is that Q_FFSR is the same as the inherited Q
+	 * from the Latch_SR class and Qc_FFSR is the same as
 	 * the inherited Qc from the same class.
 	 * Because R and S were manual inputs from the 
 	 * Latch_SR class, they have become FIRST and 
@@ -40,7 +40,7 @@ public class FlipFlop_JK extends FlipFlop_SR{
 	
 	
 	public FlipFlop_JK() {
-		super();
+		super();//Invokes FlipFlop_SR Constructor
 		
 	}//End constructor
 	
@@ -48,7 +48,7 @@ public class FlipFlop_JK extends FlipFlop_SR{
 	public void update(int timeElapsed) {
 		for(int i = 0; i < timeElapsed; i++) {
 			invertCLOCK();
-			setFIRST(Gates.NAND(Gates.OR(getQc_FFSR() ,getR_FFSR()), getCLOCK()[0]));
+			setFIRST(Gates.NAND(Gates.OR(getQc_FFSR(), getR_FFSR()), getCLOCK()[0]));
 			setSECOND(Gates.NAND(getCLOCK()[1], Gates.OR(getS_FFSR(), getQ_FFSR())));
 			setQ_FFSR(Gates.NAND(getFIRST(), getQc_FFSR()));
 			setQc_FFSR(Gates.NAND(getQ_FFSR(), getSECOND()));
@@ -56,6 +56,6 @@ public class FlipFlop_JK extends FlipFlop_SR{
 		
 		}
 	
-	}//End updateAll
+	}//End update
 	
 }//End Class
